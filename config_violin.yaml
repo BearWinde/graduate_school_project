@@ -1,0 +1,55 @@
+dataset:
+  train_path: "D:/wenzo/wave-synth/violin/violin_100/"
+  valid_path: "D:/wenzo/wave-synth/violin/valid/"
+  test_path: "D:/wenzo/wave-synth/violin_test/voice_8"
+  train_subset_files: "violin_subset/keys_train.txt"
+  valid_subset_files: "violin_subset/keys_valid.txt"
+  test_subset_files: "violin_subset/keys_test.txt"
+  metadata: "examples.json"
+  audio: "audio/"
+  pitch: "pitch/crepe"
+  loudness: "loudness/"
+common:
+  sampling_rate: 16000
+  block_size: 160
+
+train:
+  batch_size: 1
+  scales: [4096, 2048, 1024, 512, 256, 128]
+  overlap: .75
+  start_lr: 0.001
+  stop_lr: 0.0001
+  decay_over: 400000
+  hidden_size: 512
+  n_harmonic: 100
+  n_bands: 65
+  n_wavetables: 10
+  n_mfcc: 30
+  n_mels: 512
+  epochs: 5000
+  spec_mode: "mel"
+  model_name: "wavetable"
+  effect: "reverb"
+  pich_model: "crepe"
+
+test:
+  batch_size: 1
+  scales: [4096, 2048, 1024, 512, 256, 128]
+  overlap: .75
+  hidden_size: 512
+  n_harmonic: 100
+  n_bands: 65
+  n_wavetables: 10 
+  n_mfcc: 30
+  n_mels: 512
+  epochs: 5000
+  spec_mode: "mel"
+  model_name: "wavetable"
+  model_name_path: "D:/wenzo/wave-synth/test_pt/test1/100/model_mel_512_2024_05_13_60000.pt"
+  effect: "reverb"
+  pich_model: "crepe"
+
+crepe:
+  model: "large"
+
+visualize: false
